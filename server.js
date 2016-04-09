@@ -73,7 +73,7 @@ router.get('/facebook', function (req, res) {
     if (!error && response.statusCode == 200) {
 
       body = JSON.parse(body);
-
+      res.setHeader('Content-Type', 'application/json');
       res.json(body);
 
     }
@@ -98,9 +98,9 @@ router.get('/twitter', function (req, res) {
   });
 });
 
-//Enable CORS access
+// Enable CORS access
 var corsOptions = {
-  origin: 'http://www.nuitdebout.fr'
+  origin: process.env.CORS_ALLOWED_URL
 };
 
 app.use(cors(corsOptions));
